@@ -1,6 +1,6 @@
 export const Suit = {
-  CLUP:"clup",
-  DAIMOND:"daimond",
-  HEART:"heart",
-  SPADES:"spades",
+  CLUP: "clup.png",
+  DAIMOND: "daimond.webp",
+  HEART: "heart.webp",
+  SPADES: "spades.webp",
 };

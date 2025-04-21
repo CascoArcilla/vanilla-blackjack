@@ -1,12 +1,27 @@
+import { Suit } from "./Suit";
+
 export default class Card {
   constructor(suit, value) {
     this.suit = suit;
     this.value = value;
-    this.iconSuit = `asstes/imgs/${this.suit}.png`;
+    this.iconSuit = `assets/imgs/${this.suit}`;
     this.render = document.createElement("div");
+    this.colorText = "";
+  }
+
+  setColorText() {
+    if (this.suit == Suit.CLUP || this.suit == Suit.SPADES) {
+      this.colorText = "text-black";
+    } else if (this.suit == Suit.HEART) {
+      this.colorText = "text-red-600";
+    } else if (this.suit == Suit.DAIMOND) {
+      this.colorText = "text-red-700";
+    }
   }
 
   createRenderCard() {
+    this.setColorText();
+
     this.render.classList.add(
       "bg-white",
       "border",
@@ -14,14 +29,15 @@ export default class Card {
       "rounded-lg",
       "px-10",
       "py-5",
-      "shadow-lg"
+      "shadow-lg",
+      this.colorText
     );
 
     const grapContent = document.createElement("div");
-    grapContent.classList.add("flex ", "flex-col ", "items-center");
+    grapContent.classList.add("flex", "flex-col", "items-center");
 
     const valueShow = document.createElement("div");
-    valueShow.classList.add("font-bold ", "text-8xl");
+    valueShow.classList.add("font-bold", "text-8xl");
     valueShow.innerText = this.value;
 
     const suitImage = document.createElement("img");
@@ -33,9 +49,11 @@ export default class Card {
     grapContent.appendChild(suitImage);
 
     this.render.appendChild(grapContent);
+    return this.render;
   }
 
   getCard() {
-    return this.createRenderCard();
+    this.createRenderCard();
+    return this.render;
   }
 }
