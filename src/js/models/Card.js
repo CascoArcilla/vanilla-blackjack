@@ -1,4 +1,4 @@
-import { Suit } from "./Suit";
+import { Suit } from "../Suit";
 
 export default class Card {
   constructor(suit, value) {
@@ -49,10 +49,13 @@ export default class Card {
     grapContent.appendChild(suitImage);
 
     this.render.appendChild(grapContent);
-    return this.render;
   }
 
   getCard() {
+    return { suit: this.suit, value: this.value };
+  }
+
+  getCardRender() {
     this.createRenderCard();
     return this.render;
   }
