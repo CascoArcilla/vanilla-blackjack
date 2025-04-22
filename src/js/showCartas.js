@@ -1,5 +1,5 @@
 import { Suit } from "./Suit";
-import Card from "./Card";
+import Card from "./models/Card";
 
 export default function showAllCards() {
   showCards(Suit.HEART);
@@ -9,13 +9,21 @@ export default function showAllCards() {
 }
 
 function showCards(suit) {
-  document.querySelector("#app").appendChild(new Card(suit, "A").getCard());
+  document
+    .querySelector("#app")
+    .appendChild(new Card(suit, "A").getCardRender());
   for (let number = 1; number < 11; number++) {
     document
       .querySelector("#app")
-      .appendChild(new Card(suit, number).getCard());
+      .appendChild(new Card(suit, number).getCardRender());
   }
-  document.querySelector("#app").appendChild(new Card(suit, "J").getCard());
-  document.querySelector("#app").appendChild(new Card(suit, "Q").getCard());
-  document.querySelector("#app").appendChild(new Card(suit, "K").getCard());
+  document
+    .querySelector("#app")
+    .appendChild(new Card(suit, "J").getCardRender());
+  document
+    .querySelector("#app")
+    .appendChild(new Card(suit, "Q").getCardRender());
+  document
+    .querySelector("#app")
+    .appendChild(new Card(suit, "K").getCardRender());
 }
