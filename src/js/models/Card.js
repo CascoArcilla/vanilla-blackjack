@@ -1,4 +1,4 @@
-import { Suit } from "../Suit";
+import { Suit } from "../consts/Suit";
 
 export default class Card {
   constructor(suit, value) {
@@ -27,8 +27,7 @@ export default class Card {
       "border",
       "border-gray-200",
       "rounded-lg",
-      "px-10",
-      "py-5",
+      "p-2",
       "shadow-lg",
       this.colorText
     );
@@ -36,17 +35,31 @@ export default class Card {
     const grapContent = document.createElement("div");
     grapContent.classList.add("flex", "flex-col", "items-center");
 
-    const valueShow = document.createElement("div");
-    valueShow.classList.add("font-bold", "text-8xl");
-    valueShow.innerText = this.value;
+    const valueShowTop = document.createElement("div");
+    valueShowTop.classList.add("font-bold", "text-4xl", "w-full");
+    valueShowTop.innerText = this.value;
+
+    const valueShowBottom = document.createElement("div");
+    valueShowBottom.classList.add(
+      "font-bold",
+      "text-4xl",
+      "w-full",
+      "rotate-180"
+    );
+    valueShowBottom.innerText = this.value;
 
     const suitImage = document.createElement("img");
     suitImage.setAttribute("src", this.iconSuit);
     suitImage.setAttribute("alt", `icono de ${this.suit}`);
     suitImage.classList.add("w-24", "h-24", "mb-3", "rounded-full");
 
-    grapContent.appendChild(valueShow);
-    grapContent.appendChild(suitImage);
+    const divImg = document.createElement("div");
+    divImg.classList.add("px-5", "my-3");
+    divImg.appendChild(suitImage);
+
+    grapContent.appendChild(valueShowTop);
+    grapContent.appendChild(divImg);
+    grapContent.appendChild(valueShowBottom);
 
     this.render.appendChild(grapContent);
   }
