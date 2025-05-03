@@ -1,4 +1,4 @@
-import { Suit } from "./Suit";
+import { Suit } from "./consts/Suit";
 import Card from "./models/Card";
 
 export default function showAllCards() {
