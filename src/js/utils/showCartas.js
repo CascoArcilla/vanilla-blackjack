@@ -1,5 +1,9 @@
-import { Suit } from "./consts/Suit";
-import Card from "./models/Card";
+/*
+  Este codigo no tiene alguna utilidad para el funcionamiento del proyecto
+*/
+
+import { Suit } from "../consts/Suit";
+import Card from "../models/Card";
 
 export default function showAllCards() {
   showCards(Suit.HEART);
