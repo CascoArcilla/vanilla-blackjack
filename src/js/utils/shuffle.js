@@ -1,7 +1,7 @@
 /**
  * Algoritmo de Fisher-Yates: Es para barajar cartas
+ * Esta implementado dentro de la clase Deck.js
  */
-
 function shuffle(array) {
   const arr = [...array]; // Crear una copia para no modificar el original
   let currentIndex = arr.length;

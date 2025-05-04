@@ -1,5 +1,5 @@
-import { Suit } from "./consts/Suit";
-import Card from "./models/Card";
+import { Suit } from "../consts/Suit";
+import Card from "../models/Card";
 
 export default function setHeightContainCard(container) {
   let card = new Card(Suit.CLUP, "A");

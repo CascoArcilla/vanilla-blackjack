@@ -1,6 +1,6 @@
 import Card from "./Card";
-import { Suit } from "../Suit";
-import { ValuesCard } from "../ValuesCard";
+import { Suit } from "../consts/Suit";
+import { ValuesCard } from "../consts/ValuesCard";
 
 const SUITS_DECK = 4;
 
