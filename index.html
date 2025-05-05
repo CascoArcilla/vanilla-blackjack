@@ -8,8 +8,19 @@
   <title>Blackjack simple</title>
 </head>
 
-<body class="bg-black flex flex-col items-center text-white">
-  <main id="app" class="p-3 py-6 mt-6 max-w-7xl min-w-4xl flex flex-wrap gap-2 items-center justify-center bg-green-600 overflow-x-clip"></main>
+<body class="bg-black flex flex-col items-center justify-center text-white">
+  <main id="app"
+    class="px-3 py-2 max-w-7xl min-w-4xl flex flex-wrap gap-4 items-center justify-center bg-green-600 overflow-x-clip">
+    <article id="crupier" class="w-full">
+      <p class="text-2xl text-center font-bold mb-1">Dealer's Cards</p>
+      <section class="w-full py-2 flex gap-2 justify-center"></section>
+    </article>
+    <article id="player" class="w-full">
+      <p class="text-2xl text-center font-bold mb-1">Player's Cards</p>
+      <section class="w-full py-2 flex gap-2 justify-center"></section>
+    </article>
+
+  </main>
   <script type="module" src="/src/main.js"></script>
 </body>
 

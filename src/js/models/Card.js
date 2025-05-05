@@ -29,7 +29,9 @@ export default class Card {
       "rounded-lg",
       "p-2",
       "shadow-lg",
-      this.colorText
+      this.colorText,
+      "card-blackjack",
+      "relative"
     );
 
     const grapContent = document.createElement("div");
