@@ -6,3 +6,11 @@ body {
     overflow-y: scroll;
     overflow-x: hidden;
 }
+
+.card-blackjack {
+    transition: all 300ms;
+}
+
+.card-blackjack:hover {
+    transform: translateY(-10px);
+}
