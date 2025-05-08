@@ -43,10 +43,10 @@ export default class Card {
     const content = document.createElement("div");
     content.classList.add(...CARD_WRAPER_DIV);
 
-    const backCard = document.createElement("img");
-    backCard.classList.add(...CARD_REVERSE);
-    backCard.src = "assets/imgs/reverse.png";
-    backCard.alt = "reverso de una carta";
+    const reverse = document.createElement("img");
+    reverse.classList.add(...CARD_REVERSE);
+    reverse.src = "assets/imgs/reverse.png";
+    reverse.alt = "reverso de una carta";
 
     const valueShowTop = document.createElement("div");
     valueShowTop.classList.add(...CARD_VALUES);
@@ -69,7 +69,7 @@ export default class Card {
     content.appendChild(divImg);
     content.appendChild(valueShowBottom);
 
-    this.render.appendChild(backCard);
+    this.render.appendChild(reverse);
     this.render.appendChild(content);
   }
 
@@ -77,8 +77,8 @@ export default class Card {
     this.render.animate(
       [
         // keyframes
-        { transform: `rotateY(0deg)` },
         { transform: `rotateY(180deg)` },
+        { transform: `rotateY(0deg)` },
       ],
       {
         // opciones de la animación
