@@ -1,9 +1,14 @@
 import Deck from "./Deck";
 
-class Crupier {
-  constructor() {
-    this.deck = new Deck();
-    this.ownCards = [];
+export default class Dealer {
+  constructor({
+    score = 0,
+    cards = [],
+    deck = new Deck()
+  }) {
+    this.score = score;
+    this.cards = cards;
+    this.deck = deck;
   }
 
   shuffleDeck() {

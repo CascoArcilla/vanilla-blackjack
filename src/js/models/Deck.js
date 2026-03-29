@@ -7,22 +7,26 @@ const SUITS_DECK = 4;
 export default class Deck {
   constructor() {
     this.cards = new Array(ValuesCard.length * SUITS_DECK);
-    for (let value = 0; value < ValuesCard.length; value++) {
-      this.cards[value] = new Card(Suit.CLUP, ValuesCard[value]);
 
-      this.cards[value + ValuesCard.length] = new Card(
+    for (let index = 0; index < ValuesCard.length; index++) {
+      this.cards[index] = new Card(
+        Suit.CLUP,
+        ValuesCard[index]
+      );
+
+      this.cards[index + ValuesCard.length] = new Card(
         Suit.DAIMOND,
-        ValuesCard[value]
+        ValuesCard[index]
       );
 
-      this.cards[value + ValuesCard.length * 2] = new Card(
+      this.cards[index + ValuesCard.length * 2] = new Card(
         Suit.SPADES,
-        ValuesCard[value]
+        ValuesCard[index]
       );
 
-      this.cards[value + ValuesCard.length * 3] = new Card(
+      this.cards[index + ValuesCard.length * 3] = new Card(
         Suit.HEART,
-        ValuesCard[value]
+        ValuesCard[index]
       );
     }
   }

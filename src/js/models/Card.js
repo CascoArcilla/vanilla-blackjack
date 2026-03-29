@@ -20,9 +20,7 @@ export default class Card {
   setSizeCardRender() {
     this.height = this.render.getBoundingClientRect().height;
     this.width = this.render.getBoundingClientRect().width;
-
-    this.render.style.width = `${this.width}px`;
-    this.render.style.height = `${this.height}px`;
+    return { height: this.height, width: this.width };
   }
 
   setColorText() {
@@ -85,13 +83,11 @@ export default class Card {
         duration: 260,
         easing: "ease-out",
         iterations: 1,
-      }
+      },
     );
   }
 
   flip() {
-    this.setSizeCardRender();
-
     if (this.flipped) {
       this.rotateY();
 
@@ -109,7 +105,7 @@ export default class Card {
     }
   }
 
-  getCard() {
+  getInfoCard() {
     return { suit: this.suit, value: this.value };
   }
 

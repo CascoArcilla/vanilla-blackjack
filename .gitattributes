@@ -1,0 +1,3 @@
+# Maneja las imagenes .webp y .png como binarios
+*.webp binary
+*.png binary

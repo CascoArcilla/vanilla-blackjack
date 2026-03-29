@@ -1,1 +1,3 @@
-import "./main.css";
+import { ChangeSreen as ChangeSreenHome } from "./js/screens/ScreenHome";
+
+ChangeSreenHome();
