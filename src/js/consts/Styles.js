@@ -17,12 +17,15 @@ export const CARD_RENDER_DIV = [
   "shadow-lg",
   "card-blackjack",
   "relative",
+  "card-dimensions",
+  "inline-block",
+  "no-select"
 ];
 
 export const CARD_WRAPER_DIV = ["flex", "flex-col", "items-center"];
 
-export const CARD_VALUES = ["font-bold", "text-4xl", "w-full"];
+export const CARD_VALUES = ["font-bold", "text-2xl", "w-full"];
 
-export const CARD_SUIT_IMAGE = ["w-24", "h-24", "mb-3", "rounded-full"];
+export const CARD_SUIT_IMAGE = ["w-auto", "h-auto", "mb-3", "rounded-full"];
 
-export const CARD_REVERSE = ["hidden", "w-full", "h-full"]
+export const CARD_REVERSE = ["hidden", "w-full", "h-full", "no-select"]
