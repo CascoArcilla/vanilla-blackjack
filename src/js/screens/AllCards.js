@@ -1,4 +1,3 @@
-import "./main.css";
 import Deck from "./js/models/Deck";
 
 const wrapScreen = document.querySelector("#wrap-screen");

@@ -6,7 +6,6 @@ import {
   CARD_WRAPER_DIV,
 } from "../consts/Styles";
 import { Suit } from "../consts/Suit";
-import { getCardValue } from "../consts/ValuesCard";
 
 export default class Card {
   constructor(suit, value) {
@@ -106,9 +105,8 @@ export default class Card {
     }
   }
 
-  getCard() {
-    const valueCard = getCardValue(this.value);
-    return { suit: this.suit, value: valueCard };
+  getInfoCard() {
+    return { suit: this.suit, value: this.value };
   }
 
   getCardRender() {

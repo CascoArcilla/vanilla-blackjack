@@ -20,9 +20,9 @@ function defineValueAs(scorePlayer) {
   let eleven = 11;
   let one = 1;
 
-  if (scorePlayer + eleven > winScore) {
-    return one;
-  } else {
+  if (scorePlayer + eleven <= winScore) {
     return eleven;
+  } else {
+    return one;
   }
 }
