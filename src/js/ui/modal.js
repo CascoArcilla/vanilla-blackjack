@@ -13,7 +13,7 @@ export function showModal(title, content) {
     const modalTitle = document.getElementById("modal-title");
     const modalContent = document.getElementById("modal-content");
     modalTitle.textContent = title;
-    modalContent.textContent = content;
+    modalContent.innerHTML = content;
     modal.classList.remove("hidden");
 }
 

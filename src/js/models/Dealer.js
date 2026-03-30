@@ -1,36 +1,37 @@
 import Deck from "./Deck";
+import { getCardValue } from "../consts/ValuesCard";
+import { WIN_SCORE } from "../consts/Values";
 
 export default class Dealer {
-  constructor({
-    score = 0,
-    cards = [],
-    deck = new Deck()
-  }) {
-    this.score = score;
-    this.cards = cards;
-    this.deck = deck;
+  constructor() {
+    this.score = 0;
+    this.cards = [];
+    this.deck = new Deck();
   }
 
   shuffleDeck() {
     this.deck.shuffle();
   }
 
-  dealCardsFirst() {
-    this.shuffleDeck();
-    let cardsPlayer = [];
-    cardsPlayer.push(this.cardToPlayer());
-    drawCard();
-    cardsPlayer.push(this.cardToPlayer());
-    drawCard();
-
-    return cardsPlayer;
-  }
-
-  cardToPlayer() {
+  drawCard() {
     return this.deck.drawCard();
   }
 
-  drawCard() {
-    this.ownCards.push(this.deck.drawCard());
+  addCard(card) {
+    this.cards.push(card);
+    this.score += getCardValue(card.value, this.score);
+  }
+
+  reset() {
+    this.score = 0;
+    this.cards = [];
+  }
+
+  isLose() {
+    return this.score > WIN_SCORE;
+  }
+
+  isBlackjack() {
+    return this.score === WIN_SCORE;
   }
 }
