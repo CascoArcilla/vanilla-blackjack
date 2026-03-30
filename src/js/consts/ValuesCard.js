@@ -1,9 +1,11 @@
+import { WIN_SCORE } from "./Values";
+
 export const ValuesCard = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"];
 
-export function getCardValue(value) {
+export function getCardValue(value, scorePlayer) {
   switch (value) {
     case "A":
-      return 1;
+      return defineValueAs(scorePlayer);
 
     case "J":
     case "Q":
@@ -16,11 +18,10 @@ export function getCardValue(value) {
 }
 
 function defineValueAs(scorePlayer) {
-  let winScore = 21;
-  let eleven = 11;
-  let one = 1;
+  const eleven = 11;
+  const one = 1;
 
-  if (scorePlayer + eleven <= winScore) {
+  if (scorePlayer + eleven <= WIN_SCORE) {
     return eleven;
   } else {
     return one;
