@@ -1,2 +1,2 @@
-import { ChangeSreen as ChangeSreenHome } from "./js/screens/ScreenHome";
-ChangeSreenHome();
+import { ChangeSreen as ChangeSreenSetGame } from "./js/screens/ScreenSetGame";
+ChangeSreenSetGame();

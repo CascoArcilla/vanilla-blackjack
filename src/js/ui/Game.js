@@ -30,7 +30,7 @@ export const MAIN_CONTENT_GAME = `
                     ➕ Nueva Partida
                 </button>
             </section>
-            <section id="bet-container" class="flex items-center justify-center gap-4">
+            <section id="bet-container" class="flex items-center justify-center gap-4 flex-wrap">
                 <p class="text-center italic font-bold border border-gray-300 rounded-lg p-2">
                     Apuesta: <span class="bet">0</span>
                 </p>
