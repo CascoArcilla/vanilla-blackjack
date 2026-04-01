@@ -18,13 +18,19 @@ export default class Player {
 
     addCard(card) {
         this.#cards.push(card);
-        this.#score += getCardValue(card.value, this.#score);
+        this.getScore();
     }
 
     reset() {
         this.#score = 0;
         this.#cards = [];
         this.#bet = 0;
+    }
+
+    getScore() {
+        const newScore = this.#cards.reduce((score, card) => score + getCardValue(card.value, score), 0);
+        this.#score = newScore;
+        return newScore;
     }
 
     betOrLose(amount) { this.#money -= amount; }
@@ -43,7 +49,6 @@ export default class Player {
 
     getName() { return this.#name; }
 
-    getScore() { return this.#score; }
 
     getCards() { return this.#cards; }
 

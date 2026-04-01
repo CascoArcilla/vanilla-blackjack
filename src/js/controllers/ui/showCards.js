@@ -1,5 +1,6 @@
 import gsap from "gsap";
 import { toggleMenu } from "../ui/toggleMenu";
+import { PHASE_STATUS } from "../../consts/Values";
 
 export function addCardDealer(card, hideCard = false) {
     const wrapCards = document.querySelector("#crupier-cards");
@@ -29,7 +30,10 @@ export function addCardPlayer(card) {
  * @param {Array<Card>} cardsPlayer 
  * @param {Array<Card>} cardsDealer 
  */
-export function dealCards(cardsPlayer, cardsDealer) {
+export function dealCards(game) {
+    const cardsPlayer = game.getPlayer().getCards();
+    const cardsDealer = game.getDealer().getCards();
+
     const timeLine = gsap.timeline({
         defaults: {
             duration: 0.8,
@@ -52,13 +56,14 @@ export function dealCards(cardsPlayer, cardsDealer) {
     // Animaciones encadenadas y solapadas
     timeLine
         .from(cp1, { x: origenX, y: -origenY })
-        .from(cd1, { x: origenX, y: -origenY }, "-=0.6")
-        .from(cp2, { x: origenX, y: -origenY }, "-=0.6")
-        .from(cd2, { x: origenX, y: -origenY }, "-=0.6");
+        .from(cd1, { x: origenX, y: -origenY }, "-=0.5")
+        .from(cp2, { x: origenX, y: -origenY }, "-=0.5")
+        .from(cd2, { x: origenX, y: -origenY }, "-=0.5");
 
     // Restaurar la transición al finalizar
     timeLine.eventCallback("onComplete", () => {
-        gsap.set([cp1, cd1, cp2, cd2], { clearProps: "transition" });
+        gsap.set([cp1, cd1, cd2], { clearProps: "transition" });
+        game.setStatus(PHASE_STATUS.WAITING_PLAYER_ACTION);
     });
 
     toggleMenu();
@@ -67,15 +72,22 @@ export function dealCards(cardsPlayer, cardsDealer) {
 /**
  * Reparte una carta al jugador
  * 
- * @param {Card} card 
+ * @param {Game} game 
  */
-export function dealCardPlayer(card) {
+export function dealCardPlayer(game) {
+    const card = game.getPlayer().getCards()[game.getPlayer().getCards().length - 1];
     const cardRender = addCardPlayer(card);
+
+    gsap.set(cardRender, { transition: "none" });
     gsap.from(cardRender, {
         x: -window.innerWidth,
         y: window.innerHeight / 2,
         duration: 0.8,
         ease: "power2.out",
-        clearProps: "transform"
+        clearProps: "transform",
+        onComplete: () => {
+            gsap.set(cardRender, { clearProps: "transition" });
+            game.setStatus(PHASE_STATUS.WAITING_PLAYER_ACTION);
+        }
     });
 }

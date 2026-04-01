@@ -1,9 +1,10 @@
 import { renderBetPlayer } from "../ui/rendersCounts";
 import { renderMessage } from "./message";
 import { toggleMenu } from "../ui/toggleMenu";
+import { PHASE_STATUS } from "../../consts/Values";
 
 export function bet(bet, game) {
-    if (game.isRoundStarted()) {
+    if (game.getStatus() !== PHASE_STATUS.BET) {
         return false;
     }
 

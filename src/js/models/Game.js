@@ -1,23 +1,23 @@
 import Player from "./Player";
 import Dealer from "./Dealer";
+import { PHASE_STATUS } from "../consts/Values";
 
 export default class Game {
     #player;
     #dealer;
     #winAmount;
-    #activateRound;
+    #status;
 
     constructor(winAmount = 500, startAmount = 100, playerName = "Jugador") {
         this.#player = new Player(startAmount, playerName);
         this.#dealer = new Dealer();
         this.#winAmount = winAmount;
-        this.#activateRound = false;
+        this.#status = PHASE_STATUS.BET;
 
         this.#dealer.shuffleDeck();
     }
 
     initialCast() {
-        this.startRound();
         const numberOfCards = 2;
 
         for (let i = 0; i < numberOfCards; i++) {
@@ -35,15 +35,13 @@ export default class Game {
         this.#player.betOrLose(bet);
     }
 
-    startRound() { this.#activateRound = true; }
-
-    stopRound() { this.#activateRound = false; }
-
-    isRoundStarted() { return this.#activateRound; }
-
     getPlayer() { return this.#player; }
 
     getDealer() { return this.#dealer; }
 
     getWinAmount() { return this.#winAmount; }
+
+    getStatus() { return this.#status; }
+
+    setStatus(status) { this.#status = status; }
 }

@@ -1,8 +1,8 @@
 export const MAIN_CONTENT_GAME = `
-<div id="game-container" class="w-full h-full flex flex-col flex-1 gap-4 items-center">
-    <article id="crupier" class="w-full flex-1 flex flex-col items-center">
-        <section id="crupier-cards" class="flex flex-wrap max-w-2xl w-full h-full relative gap-2 border border-gray-300 rounded-lg px-4 py-2"></section>
-        <p class="text-center italic font-bold">
+<div id="game-container" class="w-full h-full flex flex-col flex-1 gap-4 items-center overflow-hidden">
+    <article id="crupier" class="w-full flex-1 flex flex-col gap-2 items-center">
+        <section id="crupier-cards" class="no-scrollbar flex max-w-2xl justify-start items-center w-full h-full relative gap-2 border border-gray-300 rounded-lg px-4 py-2 overflow-x-auto"></section>
+        <p class="text-center font-bold">
             Puntuación del dealer: <span class="score-dealer">0</span>
         </p>
     </article>
@@ -13,11 +13,11 @@ export const MAIN_CONTENT_GAME = `
         </p>
     </article>
 
-    <article id="player" class="w-full flex-1 flex flex-col justify-end items-center">
-        <section id="player-cards" class="flex flex-wrap max-w-2xl w-full h-full relative gap-2 border border-gray-300 rounded-lg px-4 py-2"></section>
-        <p class="text-center italic font-bold">
+    <article id="player" class="w-full flex-1 flex flex-col gap-2 justify-end items-center">
+        <p class="text-center font-bold">
             Tu puntuación: <span class="score-player">0</span>
         </p>
+        <section id="player-cards" class="no-scrollbar flex max-w-2xl justify-start items-center w-full h-full relative gap-2 border border-gray-300 rounded-lg px-4 py-2 overflow-x-auto"></section>
     </article>
 
     <article id="actions" class="flex md:hidden justify-end flex-col gap-4 w-full bg-white text-black p-4 rounded-lg relative">
