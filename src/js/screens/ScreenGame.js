@@ -2,7 +2,7 @@ import ShowCreen from "../utils/showScreen";
 import Game from "../models/Game";
 import { Suit } from "../consts/Suit";
 import { MAIN_CONTENT_GAME, ASIDE_MENU } from "../ui/Game";
-import { renderMoneyPlayer, renderWinAmount } from "../controllers/ui/rendersCounts";
+import { updateCounts } from "../controllers/ui/rendersCounts";
 import { finishGame, newGame } from "../controllers/screens/finishGame";
 import { bet } from "../controllers/screens/bets";
 import { hit, stand } from "../controllers/screens/optionsPlayer";
@@ -45,6 +45,5 @@ export function ChangeSreen(winAmount, startAmount, playerName) {
 
     // Inicar el juego y actualiar valores en la UI
     game = new Game(winAmount, startAmount, playerName);
-    renderMoneyPlayer(game.getPlayer().getMoney());
-    renderWinAmount(game.getWinAmount());
+    updateCounts(game);
 }

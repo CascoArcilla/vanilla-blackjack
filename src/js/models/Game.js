@@ -30,6 +30,12 @@ export default class Game {
 
     hitDealer() { this.#dealer.addCard(this.#dealer.drawCard()); }
 
+    resetRound() {
+        this.#player.resetBet();
+        this.#player.resetCards();
+        this.#dealer.resetCards();
+    }
+
     makeBet() {
         const bet = this.#player.getBet();
         this.#player.betOrLose(bet);

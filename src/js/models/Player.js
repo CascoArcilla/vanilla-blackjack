@@ -21,11 +21,12 @@ export default class Player {
         this.getScore();
     }
 
-    reset() {
+    resetCards() {
         this.#score = 0;
         this.#cards = [];
-        this.#bet = 0;
     }
+
+    resetBet() { this.#bet = 0; }
 
     getScore() {
         const newScore = this.#cards.reduce((score, card) => score + getCardValue(card.value, score), 0);
@@ -35,20 +36,17 @@ export default class Player {
 
     betOrLose(amount) { this.#money -= amount; }
 
-    win(amount) { this.#money += amount; }
+    win() { this.#money += this.#bet * 2; }
 
     isLose() { return this.#score > WIN_SCORE; }
 
-    isBlackjack() { return this.#score === WIN_SCORE; }
+    isBlackjack() { return this.getScore() === WIN_SCORE }
 
     growBet(amount) { this.#bet += amount; }
-
-    resetBet() { this.#bet = 0; }
 
     getMoney() { return this.#money; }
 
     getName() { return this.#name; }
-
 
     getCards() { return this.#cards; }
 

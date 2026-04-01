@@ -11,5 +11,6 @@ export const PHASE_STATUS = {
     BET: "bet",
     DEAL: "deal",
     WAITING_PLAYER_ACTION: "waiting_player_action",
-    END: "end"
+    END_ROUND: "end_round",
+    END_GAME: "end_game"
 }
