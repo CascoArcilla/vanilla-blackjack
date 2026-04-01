@@ -1,6 +1,6 @@
 import gsap from "gsap";
-import { toggleMenu } from "../ui/toggleMenu";
 import { PHASE_STATUS } from "../../consts/Values";
+import { toggleMenu } from "../ui/toggleMenu";
 
 export function addCardDealer(card, hideCard = false) {
     const wrapCards = document.querySelector("#crupier-cards");
@@ -25,48 +25,68 @@ export function addCardPlayer(card) {
 
 
 /**
+ * Calcula el offset desde la izquierda de la pantalla hasta el elemento dado
+ * para que parezca que viene desde la izquierda.
+ */
+function getCenterOffset(element) {
+    const rect = element.getBoundingClientRect();
+    const centerX = -window.innerWidth;
+    const centerY = window.innerHeight / 2;
+
+    return {
+        x: centerX,
+        y: centerY - (rect.top + rect.height / 2)
+    };
+}
+
+/**
  * Se usa la libreria gsap para crear una animacion de reparto de cartas inicial
  * 
- * @param {Array<Card>} cardsPlayer 
- * @param {Array<Card>} cardsDealer 
+ * @param {Game} game 
  */
 export function dealCards(game) {
     const cardsPlayer = game.getPlayer().getCards();
     const cardsDealer = game.getDealer().getCards();
 
-    const timeLine = gsap.timeline({
-        defaults: {
-            duration: 0.8,
-            ease: "power2.out",
-            clearProps: "transform" // Asegura que el translate se elimine al terminar
-        }
-    });
+    const wrapPlayer = document.querySelector("#player-cards");
+    const wrapDealer = document.querySelector("#crupier-cards");
 
-    const origenX = -window.innerWidth;
-    const origenY = window.innerHeight / 2;
+    gsap.set([wrapPlayer, wrapDealer], { overflow: "visible" });
 
     const cp1 = addCardPlayer(cardsPlayer[0]);
     const cd1 = addCardDealer(cardsDealer[0]);
     const cp2 = addCardPlayer(cardsPlayer[1]);
     const cd2 = addCardDealer(cardsDealer[1], true);
 
-    // Desactivar transiciones CSS para evitar conflictos con GSAP
-    gsap.set([cp1, cd1, cp2, cd2], { transition: "none" });
+    const offsetCP1 = getCenterOffset(cp1);
+    const offsetCD1 = getCenterOffset(cd1);
+    const offsetCP2 = getCenterOffset(cp2);
+    const offsetCD2 = getCenterOffset(cd2);
 
-    // Animaciones encadenadas y solapadas
-    timeLine
-        .from(cp1, { x: origenX, y: -origenY })
-        .from(cd1, { x: origenX, y: -origenY }, "-=0.5")
-        .from(cp2, { x: origenX, y: -origenY }, "-=0.5")
-        .from(cd2, { x: origenX, y: -origenY }, "-=0.5");
-
-    // Restaurar la transición al finalizar
-    timeLine.eventCallback("onComplete", () => {
-        gsap.set([cp1, cd1, cd2], { clearProps: "transition" });
-        game.setStatus(PHASE_STATUS.WAITING_PLAYER_ACTION);
+    const timeLine = gsap.timeline({
+        defaults: {
+            duration: 0.8,
+            ease: "power2.out",
+            clearProps: "transform"
+        },
+        onComplete: () => {
+            // Restaurar el scroll y limpiar estilos de clipping
+            gsap.set([wrapPlayer, wrapDealer], { clearProps: "overflow" });
+            gsap.set([cp1, cd1, cp2, cd2], { clearProps: "transition,zIndex" });
+            game.setStatus(PHASE_STATUS.WAITING_PLAYER_ACTION);
+        }
     });
 
+    // Desactivar transiciones CSS y asegurar que estén por encima de todo
+    gsap.set([cp1, cd1, cp2, cd2], { transition: "none", zIndex: 50 });
+
     toggleMenu();
+
+    timeLine
+        .from(cp1, { x: offsetCP1.x, y: offsetCP1.y })
+        .from(cd1, { x: offsetCD1.x, y: offsetCD1.y }, "-=0.5")
+        .from(cp2, { x: offsetCP2.x, y: offsetCP2.y }, "-=0.5")
+        .from(cd2, { x: offsetCD2.x, y: offsetCD2.y }, "-=0.5");
 }
 
 /**
@@ -77,16 +97,24 @@ export function dealCards(game) {
 export function dealCardPlayer(game) {
     const card = game.getPlayer().getCards()[game.getPlayer().getCards().length - 1];
     const cardRender = addCardPlayer(card);
+    const wrapPlayer = document.querySelector("#player-cards");
 
-    gsap.set(cardRender, { transition: "none" });
+    const offset = getCenterOffset(cardRender);
+
+    gsap.set(wrapPlayer, { overflow: "visible" });
+    gsap.set(cardRender, { transition: "none", zIndex: 50 });
+
+    toggleMenu();
+    
     gsap.from(cardRender, {
-        x: -window.innerWidth,
-        y: window.innerHeight / 2,
+        x: offset.x,
+        y: offset.y,
         duration: 0.8,
         ease: "power2.out",
         clearProps: "transform",
         onComplete: () => {
-            gsap.set(cardRender, { clearProps: "transition" });
+            gsap.set(wrapPlayer, { clearProps: "overflow" });
+            gsap.set(cardRender, { clearProps: "transition,zIndex" });
             game.setStatus(PHASE_STATUS.WAITING_PLAYER_ACTION);
         }
     });

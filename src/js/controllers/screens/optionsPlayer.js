@@ -1,9 +1,9 @@
-import { toggleMenu } from "../ui/toggleMenu";
 import { renderMessage } from "./message";
 import { disableBet, enableBet } from "../ui/disableButtons";
 import { renderMoneyPlayer, renderScorePlayer, renderScoreDealer } from "../ui/rendersCounts";
 import { dealCards, dealCardPlayer } from "../ui/showCards";
 import { PHASE_STATUS } from "../../consts/Values";
+import { toggleMenu } from "../ui/toggleMenu";
 
 export function hit(game) {
     if (game.getStatus() === PHASE_STATUS.DEAL) {
@@ -40,8 +40,8 @@ function playerHit(game) {
 }
 
 function initialHit(game) {
-    game.makeBet();
     game.setStatus(PHASE_STATUS.DEAL);
+    game.makeBet();
     game.initialCast();
 
     renderMoneyPlayer(game.getPlayer().getMoney());
