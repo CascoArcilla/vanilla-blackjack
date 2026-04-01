@@ -1,6 +1,6 @@
 import { renderMessage } from "./message";
 import { disableBet, enableBet } from "../ui/disableButtons";
-import { renderMoneyPlayer, renderScorePlayer, renderScoreDealer } from "../ui/rendersCounts";
+import { renderScorePlayer, renderMoneyPlayer, renderBetPlayer } from "../ui/rendersCounts";
 import { dealCards, dealCardPlayer } from "../ui/showCards";
 import { PHASE_STATUS } from "../../consts/Values";
 import { toggleMenu } from "../ui/toggleMenu";
@@ -45,8 +45,7 @@ function initialHit(game) {
     game.initialCast();
 
     renderMoneyPlayer(game.getPlayer().getMoney());
-    renderScorePlayer(game.getPlayer().getScore());
-    renderScoreDealer(game.getDealer().getScore());
+    renderBetPlayer(game.getPlayer().getBet());
 
     dealCards(game);
 }

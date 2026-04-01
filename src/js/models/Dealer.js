@@ -21,7 +21,7 @@ export default class Dealer {
     this.#cards.push(card);
   }
 
-  reset() {
+  resetCards() {
     this.#score = 0;
     this.#cards = [];
   }

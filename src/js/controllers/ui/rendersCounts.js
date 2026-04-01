@@ -22,3 +22,11 @@ export function renderScoreDealer(score) {
     const scoreDealer = document.querySelectorAll(".score-dealer");
     scoreDealer.forEach(element => element.textContent = score);
 }
+
+export function updateCounts(game) {
+    renderMoneyPlayer(game.getPlayer().getMoney());
+    renderBetPlayer(game.getPlayer().getBet());
+    renderWinAmount(game.getWinAmount());
+    renderScorePlayer(game.getPlayer().getScore());
+    renderScoreDealer(game.getDealer().getScore());
+}

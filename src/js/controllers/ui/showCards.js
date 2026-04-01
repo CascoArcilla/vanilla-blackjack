@@ -1,6 +1,7 @@
 import gsap from "gsap";
-import { PHASE_STATUS } from "../../consts/Values";
 import { toggleMenu } from "../ui/toggleMenu";
+import { checkConditions } from "../screens/conditionsWinner";
+import { updateCounts } from "./rendersCounts";
 
 export function addCardDealer(card, hideCard = false) {
     const wrapCards = document.querySelector("#crupier-cards");
@@ -73,7 +74,9 @@ export function dealCards(game) {
             // Restaurar el scroll y limpiar estilos de clipping
             gsap.set([wrapPlayer, wrapDealer], { clearProps: "overflow" });
             gsap.set([cp1, cd1, cp2, cd2], { clearProps: "transition,zIndex" });
-            game.setStatus(PHASE_STATUS.WAITING_PLAYER_ACTION);
+
+            updateCounts(game);
+            checkConditions(game);
         }
     });
 
@@ -105,7 +108,7 @@ export function dealCardPlayer(game) {
     gsap.set(cardRender, { transition: "none", zIndex: 50 });
 
     toggleMenu();
-    
+
     gsap.from(cardRender, {
         x: offset.x,
         y: offset.y,
@@ -115,7 +118,16 @@ export function dealCardPlayer(game) {
         onComplete: () => {
             gsap.set(wrapPlayer, { clearProps: "overflow" });
             gsap.set(cardRender, { clearProps: "transition,zIndex" });
-            game.setStatus(PHASE_STATUS.WAITING_PLAYER_ACTION);
+
+            updateCounts(game);
+            checkConditions(game);
         }
     });
+}
+
+export function emptyCards() {
+    const wrapPlayer = document.querySelector("#player-cards");
+    const wrapDealer = document.querySelector("#crupier-cards");
+    wrapPlayer.innerHTML = "";
+    wrapDealer.innerHTML = "";
 }
