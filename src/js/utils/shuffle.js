@@ -14,10 +14,7 @@ function shuffle(array) {
     currentIndex--;
 
     // Intercambiarlo con el elemento actual
-    [arr[currentIndex], arr[randomIndex]] = [
-      arr[randomIndex],
-      arr[currentIndex],
-    ];
+    [arr[currentIndex], arr[randomIndex]] = [arr[randomIndex], arr[currentIndex]];
   }
 
   return arr;

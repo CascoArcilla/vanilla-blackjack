@@ -12,6 +12,7 @@ export default class Game {
         this.#dealer = new Dealer();
         this.#winAmount = winAmount;
         this.#activateRound = false;
+
         this.#dealer.shuffleDeck();
     }
 
@@ -24,6 +25,10 @@ export default class Game {
             this.#dealer.addCard(this.#dealer.drawCard());
         }
     }
+
+    hitPlayer() { this.#player.addCard(this.#dealer.drawCard()); }
+
+    hitDealer() { this.#dealer.addCard(this.#dealer.drawCard()); }
 
     makeBet() {
         const bet = this.#player.getBet();

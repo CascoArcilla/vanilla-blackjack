@@ -19,7 +19,6 @@ export default class Dealer {
 
   addCard(card) {
     this.#cards.push(card);
-    this.#score += getCardValue(card.value, this.#score);
   }
 
   reset() {
@@ -31,7 +30,16 @@ export default class Dealer {
 
   isBlackjack() { return this.#score === WIN_SCORE; }
 
-  getScore() { return this.#score; }
+  getScore(hideSecondCard = true) {
+    let score = 0;
+    this.#cards.forEach((card, index) => {
+      if (hideSecondCard && index === 1) return;
+      score += getCardValue(card.value, score);
+    });
+
+    this.#score = score;
+    return this.#score;
+  }
 
   getCards() { return this.#cards; }
 }

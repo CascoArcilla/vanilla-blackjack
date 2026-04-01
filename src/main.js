@@ -1,2 +1,3 @@
-import { ChangeSreen as ChangeSreenSetGame } from "./js/screens/ScreenSetGame";
-ChangeSreenSetGame();
+import { ChangeSreen as ChangeSreenSetGame } from "./js/screens/ScreenSetGame"
+
+ChangeSreenSetGame()
