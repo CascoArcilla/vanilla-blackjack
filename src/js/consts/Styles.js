@@ -19,7 +19,8 @@ export const CARD_RENDER_DIV = [
   "relative",
   "card-dimensions",
   "inline-block",
-  "no-select"
+  "no-select",
+  "flex-shrink-0"
 ];
 
 export const CARD_WRAPER_DIV = ["flex", "flex-col", "items-center"];

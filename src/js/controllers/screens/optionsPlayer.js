@@ -1,19 +1,28 @@
 import { toggleMenu } from "../ui/toggleMenu";
 import { renderMessage } from "./message";
-import { disableBet, enableHitAndStand } from "../ui/disableButtons";
+import { disableBet, enableBet } from "../ui/disableButtons";
 import { renderMoneyPlayer, renderScorePlayer, renderScoreDealer } from "../ui/rendersCounts";
-import { dealCards } from "../ui/showCards";
+import { dealCards, dealCardPlayer } from "../ui/showCards";
+import { PHASE_STATUS } from "../../consts/Values";
 
 export function hit(game) {
+    if (game.getStatus() === PHASE_STATUS.DEAL) {
+        return false;
+    }
+
+    disableBet();
+
     const player = game.getPlayer();
 
     if (player.getBet() <= 0) {
         toggleMenu();
         renderMessage("Debes apostar antes de empezar la ronda");
+        game.setStatus(PHASE_STATUS.BET);
+        enableBet();
         return false;
     }
 
-    if (!player.hasCards()) {
+    if (!player.hasCards() && game.getStatus() === PHASE_STATUS.BET) {
         initialHit(game);
         return true;
     }
@@ -23,20 +32,23 @@ export function hit(game) {
 }
 
 function playerHit(game) {
-    console.log("Carda de jugador tomada");
+    game.setStatus(PHASE_STATUS.DEAL);
+    game.hitPlayer();
+    renderScorePlayer(game.getPlayer().getScore());
+    dealCardPlayer(game);
     return true;
 }
 
 function initialHit(game) {
-    disableBet();
     game.makeBet();
+    game.setStatus(PHASE_STATUS.DEAL);
     game.initialCast();
 
     renderMoneyPlayer(game.getPlayer().getMoney());
     renderScorePlayer(game.getPlayer().getScore());
     renderScoreDealer(game.getDealer().getScore());
 
-    dealCards(game.getPlayer().getCards(), game.getDealer().getCards());
+    dealCards(game);
 }
 
 export function stand(game) {
