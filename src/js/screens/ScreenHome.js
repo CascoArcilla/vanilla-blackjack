@@ -1,5 +1,5 @@
 import ShowCreen from "../utils/showScreen";
-import { ChangeSreen as ChangeSreenSetGame } from "./ScrenSetGame";
+import { ChangeSreen as ChangeSreenSetGame } from "./ScreenSetGame";
 import { ChangeSreen as ChangeSreenHelp } from "./ScreenHelp";
 
 function ScreenHome() {

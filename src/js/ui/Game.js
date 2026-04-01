@@ -1,7 +1,7 @@
 export const MAIN_CONTENT_GAME = `
 <div id="game-container" class="w-full h-full flex flex-col flex-1 gap-4 items-center">
     <article id="crupier" class="w-full flex-1 flex flex-col items-center">
-        <section id="crupier-cards" class="flex flex-wrap max-w-2xl w-full h-full gap-2 border border-gray-300 rounded-lg px-4 py-2"></section>
+        <section id="crupier-cards" class="flex flex-wrap max-w-2xl w-full h-full relative gap-2 border border-gray-300 rounded-lg px-4 py-2"></section>
         <p class="text-center italic font-bold">
             Puntuación del dealer: <span class="score-dealer">0</span>
         </p>
@@ -14,7 +14,7 @@ export const MAIN_CONTENT_GAME = `
     </article>
 
     <article id="player" class="w-full flex-1 flex flex-col justify-end items-center">
-        <section id="player-cards" class="flex flex-wrap max-w-2xl w-full h-full gap-2 border border-gray-300 rounded-lg px-4 py-2"></section>
+        <section id="player-cards" class="flex flex-wrap max-w-2xl w-full h-full relative gap-2 border border-gray-300 rounded-lg px-4 py-2"></section>
         <p class="text-center italic font-bold">
             Tu puntuación: <span class="score-player">0</span>
         </p>
@@ -30,7 +30,7 @@ export const MAIN_CONTENT_GAME = `
                     ➕ Nueva Partida
                 </button>
             </section>
-            <section id="bet-container" class="flex items-center justify-center gap-4">
+            <section id="bet-container" class="flex items-center justify-center gap-4 flex-wrap">
                 <p class="text-center italic font-bold border border-gray-300 rounded-lg p-2">
                     Apuesta: <span class="bet">0</span>
                 </p>
@@ -55,18 +55,18 @@ export const MAIN_CONTENT_GAME = `
                 </ul>
             </section>
             <section class="flex flex-wrap justify-center gap-2">
-                <button id="btn-hit" class="btn-hit flex-1 bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600 cursor-pointer">
+                <button class="btn-hit flex-1 bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600 cursor-pointer">
                     Pedir
                 </button>
-                <button id="btn-stand" class="btn-stand flex-1 bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600 cursor-pointer">
+                <button class="btn-stand flex-1 bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600 cursor-pointer">
                     Plantarse
                 </button>
-                <button id="show-menu" class="md:hidden flex-1 bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600 cursor-pointer">
+                <button class="btn-show-hide-menu md:hidden flex-1 bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600 cursor-pointer">
                     Ocultar Menú
                 </button>
             </section>
         </div>
-        <button id="show-menu" class="md:hidden bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600 cursor-pointer">
+        <button class="btn-show-hide-menu md:hidden bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600 cursor-pointer">
             Mostrar Menú
         </button>
     </article>
@@ -109,10 +109,10 @@ export const ASIDE_MENU = `
             </p>
         </section>
         <section class="flex flex-col justify-center gap-2">
-            <button id="btn-hit" class="btn-hit bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 cursor-pointer">
+            <button class="btn-hit bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 cursor-pointer">
                 Pedir
             </button>
-            <button id="btn-stand" class="btn-stand bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 cursor-pointer">
+            <button class="btn-stand bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 cursor-pointer">
                 Plantarse
             </button>
         </section>

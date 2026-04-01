@@ -14,7 +14,7 @@ export default class Card {
     this.iconSuit = `assets/imgs/${this.suit}`;
     this.render = document.createElement("div");
     this.colorText = "";
-    this.flipped = false;
+    this.hidden = false;
   }
 
   setSizeCardRender() {
@@ -88,20 +88,20 @@ export default class Card {
   }
 
   flip() {
-    if (this.flipped) {
+    if (this.hidden) {
       this.rotateY();
 
       this.render.querySelector("img").classList.add("hidden");
       this.render.querySelector("div").classList.remove("hidden");
 
-      this.flipped = !this.flipped;
+      this.hidden = !this.hidden;
     } else {
       this.rotateY();
 
       this.render.querySelector("img").classList.remove("hidden");
       this.render.querySelector("div").classList.add("hidden");
 
-      this.flipped = !this.flipped;
+      this.hidden = !this.hidden;
     }
   }
 
@@ -111,6 +111,13 @@ export default class Card {
 
   getCardRender() {
     this.createRenderCard();
+    return this.render;
+  }
+
+  getCardReverse() {
+    this.createRenderCard();
+    this.render.querySelector("img").classList.remove("hidden");
+    this.render.querySelector("div").classList.add("hidden");
     return this.render;
   }
 }
