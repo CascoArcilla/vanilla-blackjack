@@ -1,7 +1,8 @@
 import gsap from "gsap";
 import { toggleMenu } from "../ui/toggleMenu";
-import { checkConditions } from "../screens/conditionsWinner";
-import { updateCounts } from "./rendersCounts";
+import { checkPlayerConditions, drawDelaerFlow } from "../screens/conditionsWinner";
+import { renderScoreDealer, updateCounts } from "./rendersCounts";
+import Game from "../../models/Game";
 
 export function addCardDealer(card, hideCard = false) {
     const wrapCards = document.querySelector("#crupier-cards");
@@ -76,7 +77,7 @@ export function dealCards(game) {
             gsap.set([cp1, cd1, cp2, cd2], { clearProps: "transition,zIndex" });
 
             updateCounts(game);
-            checkConditions(game);
+            checkPlayerConditions(game);
         }
     });
 
@@ -120,7 +121,44 @@ export function dealCardPlayer(game) {
             gsap.set(cardRender, { clearProps: "transition,zIndex" });
 
             updateCounts(game);
-            checkConditions(game);
+            checkPlayerConditions(game);
+        }
+    });
+}
+
+/**
+ * Reparte una carta al crupier
+ * 
+ * @param {Game} game 
+ */
+export function dealCardDealer(game) {
+    const card = game.getDealer().getCards()[game.getDealer().getCards().length - 1];
+    const cardRender = addCardDealer(card);
+    const wrapDealer = document.querySelector("#crupier-cards");
+
+    const offset = getCenterOffset(cardRender);
+
+    gsap.set(wrapDealer, { overflow: "visible" });
+    gsap.set(cardRender, { transition: "none", zIndex: 50 });
+
+    toggleMenu();
+
+    gsap.from(cardRender, {
+        x: offset.x,
+        y: offset.y,
+        duration: 0.8,
+        ease: "power2.out",
+        clearProps: "transform",
+        onComplete: () => {
+            gsap.set(wrapDealer, { clearProps: "overflow" });
+            gsap.set(cardRender, { clearProps: "transition,zIndex" });
+
+            const scoreDealer = game.getDealer().getScore(false);
+            renderScoreDealer(scoreDealer);
+
+            setTimeout(() => {
+                drawDelaerFlow(game);
+            }, 500);
         }
     });
 }

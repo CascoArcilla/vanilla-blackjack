@@ -24,4 +24,7 @@ dist-ssr
 *.sln
 *.sw?
 
+# Archivos de prueba
+tmp
+
 package-lock.json

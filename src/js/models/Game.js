@@ -1,6 +1,6 @@
 import Player from "./Player";
 import Dealer from "./Dealer";
-import { PHASE_STATUS } from "../consts/Values";
+import { PHASE_STATUS, WIN_SCORE } from "../consts/Values";
 
 export default class Game {
     #player;
@@ -26,14 +26,35 @@ export default class Game {
         }
     }
 
-    hitPlayer() { this.#player.addCard(this.#dealer.drawCard()); }
+    hitPlayer() {
+        this.#player.addCard(this.#dealer.drawCard());
+        return this.#player.getScore();
+    }
 
-    hitDealer() { this.#dealer.addCard(this.#dealer.drawCard()); }
+    hitDealer() {
+        this.#dealer.addCard(this.#dealer.drawCard());
+        return this.#dealer.getScore();
+    }
 
     resetRound() {
         this.#player.resetBet();
         this.#player.resetCards();
         this.#dealer.resetCards();
+    }
+
+    checkWinner() {
+        const scorePlayer = this.#player.getScore();
+        const scoreDealer = this.#dealer.getScore();
+
+        if (scorePlayer > scoreDealer && scorePlayer <= WIN_SCORE) {
+            this.#player.win();
+            return "player";
+        } else if (scorePlayer < scoreDealer && scoreDealer <= WIN_SCORE) {
+            return "dealer";
+        } else if (scorePlayer === scoreDealer) {
+            this.#player.push();
+            return "draw";
+        }
     }
 
     makeBet() {
