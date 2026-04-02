@@ -6,16 +6,26 @@ export default class Dealer {
   #score;
   #cards;
   #deck;
+  #limitScore;
 
   constructor() {
     this.#score = 0;
     this.#cards = [];
     this.#deck = new Deck();
+    this.#limitScore = 17;
   }
 
   shuffleDeck() { this.#deck.shuffle(); }
 
-  drawCard() { return this.#deck.drawCard(); }
+  drawCard() {
+    if (this.#deck.hasCards()) {
+      return this.#deck.drawCard();
+    }
+
+    this.#deck = new Deck();
+    this.#deck.shuffle();
+    return this.#deck.drawCard();
+  }
 
   addCard(card) {
     this.#cards.push(card);
@@ -26,16 +36,29 @@ export default class Dealer {
     this.#cards = [];
   }
 
-  isLose() { return this.#score > WIN_SCORE; }
+  isGrow() { return this.getScore(false) < this.#limitScore; }
 
-  isBlackjack() { return this.#score === WIN_SCORE; }
+  isBlackjack() { return this.getScore(false) === WIN_SCORE; }
+
+  isLose() { return this.getScore() > WIN_SCORE; }
 
   getScore(hideSecondCard = true) {
     let score = 0;
+    let aces = 0;
+
     this.#cards.forEach((card, index) => {
       if (hideSecondCard && index === 1) return;
-      score += getCardValue(card.value, score);
+
+      if (card.value === "A") {
+        aces++;
+      } else {
+        score += getCardValue(card.value, score);
+      }
     });
+
+    for (let i = 0; i < aces; i++) {
+      score += getCardValue("A", score);
+    }
 
     this.#score = score;
     return this.#score;

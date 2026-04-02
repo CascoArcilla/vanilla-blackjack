@@ -29,9 +29,23 @@ export default class Player {
     resetBet() { this.#bet = 0; }
 
     getScore() {
-        const newScore = this.#cards.reduce((score, card) => score + getCardValue(card.value, score), 0);
-        this.#score = newScore;
-        return newScore;
+        let score = 0;
+        let aces = 0;
+
+        for (const card of this.#cards) {
+            if (card.value === "A") {
+                aces++;
+            } else {
+                score += getCardValue(card.value, score);
+            }
+        }
+
+        for (let i = 0; i < aces; i++) {
+            score += getCardValue("A", score);
+        }
+
+        this.#score = score;
+        return score;
     }
 
     betOrLose(amount) { this.#money -= amount; }
@@ -43,6 +57,8 @@ export default class Player {
     isBlackjack() { return this.getScore() === WIN_SCORE }
 
     growBet(amount) { this.#bet += amount; }
+
+    push() { this.#money += this.#bet; }
 
     getMoney() { return this.#money; }
 

@@ -118,6 +118,7 @@ export default class Card {
     this.createRenderCard();
     this.render.querySelector("img").classList.remove("hidden");
     this.render.querySelector("div").classList.add("hidden");
+    this.hidden = true;
     return this.render;
   }
 }
