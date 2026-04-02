@@ -1,7 +1,7 @@
 import ShowCreen from "../utils/showScreen";
 import Game from "../models/Game";
 import { Suit } from "../consts/Suit";
-import { MAIN_CONTENT_GAME, ASIDE_MENU } from "../ui/Game";
+import { MAIN_CONTENT_GAME, ASIDE_MENU } from "../ui/templateGame";
 import { updateCounts } from "../controllers/ui/rendersCounts";
 import { finishGame, newGame } from "../controllers/screens/finishGame";
 import { bet } from "../controllers/screens/bets";
