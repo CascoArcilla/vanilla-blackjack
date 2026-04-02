@@ -58,4 +58,6 @@ export default class Deck {
   drawCard() {
     return this.cards.pop();
   }
+
+  hasCards() { return this.cards.length > 0; }
 }
