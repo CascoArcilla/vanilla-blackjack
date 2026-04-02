@@ -1,12 +1,12 @@
-import ShowCreen from "../utils/showScreen";
-import Game from "../models/Game";
-import { Suit } from "../consts/Suit";
-import { MAIN_CONTENT_GAME, ASIDE_MENU } from "../ui/templateGame";
-import { updateCounts } from "../controllers/ui/rendersCounts";
-import { finishGame, newGame } from "../controllers/screens/finishGame";
-import { bet } from "../controllers/screens/bets";
-import { hit, stand } from "../controllers/screens/optionsPlayer";
-import { toggleMenu } from "../controllers/ui/toggleMenu";
+import ShowCreen from "../utils/showScreen.js";
+import Game from "../models/Game.js";
+import { Suit } from "../consts/Suit.js";
+import { MAIN_CONTENT_GAME, ASIDE_MENU } from "../ui/templateGame.js";
+import { updateCounts } from "../controllers/ui/rendersCounts.js";
+import { finishGame, newGame } from "../controllers/screens/finishGame.js";
+import { bet } from "../controllers/screens/bets.js";
+import { hit, stand } from "../controllers/screens/optionsPlayer.js";
+import { toggleMenu } from "../controllers/ui/toggleMenu.js";
 
 let game;
 

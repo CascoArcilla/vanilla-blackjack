@@ -1,6 +1,6 @@
-import ShowCreen from "../utils/showScreen";
-import { ChangeSreen as ChangeSreenHome } from "./ScreenHome";
-import { HELP_TEMPLATE } from "../ui/templateHelp";
+import ShowCreen from "../utils/showScreen.js";
+import { ChangeSreen as ChangeSreenHome } from "./ScreenHome.js";
+import { HELP_TEMPLATE } from "../ui/templateHelp.js";
 
 const points = [
     'El objetivo del juego es obtener una mano de cartas con un valor total más cercano a 21 que la mano del crupier (dealer o quien reparte las cartas), sin exceder 21',

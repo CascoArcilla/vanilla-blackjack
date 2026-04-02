@@ -1,8 +1,8 @@
 import gsap from "gsap";
-import { toggleMenu } from "../ui/toggleMenu";
-import { checkPlayerConditions, drawDelaerFlow } from "../screens/conditionsWinner";
-import { renderScoreDealer, updateCounts } from "./rendersCounts";
-import Game from "../../models/Game";
+import { toggleMenu } from "../ui/toggleMenu.js";
+import { checkPlayerConditions, drawDelaerFlow } from "../screens/conditionsWinner.js";
+import { renderScoreDealer, updateCounts } from "./rendersCounts.js";
+import Game from "../../models/Game.js";
 
 export function addCardDealer(card, hideCard = false) {
     const wrapCards = document.querySelector("#crupier-cards");

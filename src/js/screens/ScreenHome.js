@@ -1,7 +1,7 @@
-import ShowCreen from "../utils/showScreen";
-import { ChangeSreen as ChangeSreenSetGame } from "./ScreenSetGame";
-import { ChangeSreen as ChangeSreenHelp } from "./ScreenHelp";
-import { HOME_TEMPLATE } from "../ui/templateHome";
+import ShowCreen from "../utils/showScreen.js";
+import { ChangeSreen as ChangeSreenSetGame } from "./ScreenSetGame.js";
+import { ChangeSreen as ChangeSreenHelp } from "./ScreenHelp.js";
+import { HOME_TEMPLATE } from "../ui/templateHome.js";
 
 function ScreenHome() {
     return HOME_TEMPLATE;

@@ -1,10 +1,10 @@
-import { renderMessage } from "./message";
-import { disableBet, enableBet } from "../ui/disableButtons";
-import { renderScorePlayer, renderMoneyPlayer, renderBetPlayer, renderScoreDealer } from "../ui/rendersCounts";
-import { dealCards, dealCardPlayer } from "../ui/showCards";
-import { PHASE_STATUS } from "../../consts/Values";
-import { toggleMenu } from "../ui/toggleMenu";
-import { drawDelaerFlow } from "./conditionsWinner";
+import { renderMessage } from "./message.js";
+import { disableBet, enableBet } from "../ui/disableButtons.js";
+import { renderScorePlayer, renderMoneyPlayer, renderBetPlayer, renderScoreDealer } from "../ui/rendersCounts.js";
+import { dealCards, dealCardPlayer } from "../ui/showCards.js";
+import { PHASE_STATUS } from "../../consts/Values.js";
+import { toggleMenu } from "../ui/toggleMenu.js";
+import { drawDelaerFlow } from "./conditionsWinner.js";
 
 export function hit(game) {
     if (game.getStatus() === PHASE_STATUS.DEAL) {

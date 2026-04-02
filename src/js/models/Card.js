@@ -4,8 +4,8 @@ import {
   CARD_SUIT_IMAGE,
   CARD_VALUES,
   CARD_WRAPER_DIV,
-} from "../consts/Styles";
-import { Suit } from "../consts/Suit";
+} from "../consts/Styles.js";
+import { Suit } from "../consts/Suit.js";
 
 export default class Card {
   constructor(suit, value) {

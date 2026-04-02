@@ -1,6 +1,6 @@
-import { showModal, hideModal } from "../../ui/modal";
-import { ChangeSreen as ChangeScreenHome } from "../../screens/ScreenHome";
-import { ChangeSreen as ChangeScreenSetGame } from "../../screens/ScreenSetGame";
+import { showModal, hideModal } from "../../ui/modal.js";
+import { ChangeSreen as ChangeScreenHome } from "../../screens/ScreenHome.js";
+import { ChangeSreen as ChangeScreenSetGame } from "../../screens/ScreenSetGame.js";
 
 export function finishGame() {
     const content = `
