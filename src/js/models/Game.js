@@ -46,15 +46,21 @@ export default class Game {
         const scorePlayer = this.#player.getScore();
         const scoreDealer = this.#dealer.getScore(false);
 
-        if (scorePlayer <= WIN_SCORE && scorePlayer > scoreDealer) {
-            this.#player.win();
-            return "player";
-        } else if (scoreDealer <= WIN_SCORE && scoreDealer > scorePlayer) {
-            return "dealer";
-        } else if (scorePlayer === scoreDealer) {
+        if (scorePlayer === scoreDealer) {
             this.#player.push();
             return "draw";
         }
+
+        if (scorePlayer <= WIN_SCORE && scorePlayer > scoreDealer) {
+            this.#player.win();
+            return "player";
+        }
+
+        if (scoreDealer <= WIN_SCORE && scoreDealer > scorePlayer) {
+            return "dealer";
+        }
+
+        return null;
     }
 
     makeBet() {

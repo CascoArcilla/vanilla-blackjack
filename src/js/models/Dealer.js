@@ -40,7 +40,7 @@ export default class Dealer {
 
   isBlackjack() { return this.getScore(false) === WIN_SCORE; }
 
-  isLose() { return this.getScore() > WIN_SCORE; }
+  isLose() { return this.getScore(false) > WIN_SCORE; }
 
   getScore(hideSecondCard = true) {
     let score = 0;

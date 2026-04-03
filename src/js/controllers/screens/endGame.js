@@ -8,7 +8,7 @@ export function checkEndGame(game) {
                 playerWin: false,
                 titles: {
                     title: "¡Has perdido!",
-                    subtitle: "Te has quedado sin dinero"
+                    subtitle: "Te has quedado sin Saldo"
                 }
             });
         }, 6000);

@@ -1,8 +1,10 @@
 export function WINNER_TEMPLATE(data) {
     let iconColor = "text-black"
+    let moneyColor = "text-red-600"
 
     if (data.playerWin) {
         iconColor = "text-yellow-600"
+        moneyColor = "text-green-600"
     }
 
     return `
@@ -21,7 +23,7 @@ export function WINNER_TEMPLATE(data) {
         <div class="space-y-4 mb-8">
             <div class="bg-gray-50 p-4 rounded-xl">
                 <p class="text-sm text-gray-500 uppercase font-semibold">Monto ganado</p>
-                <p class="text-3xl font-bold text-green-600">$${data.finalAmount}</p>
+                <p class="text-3xl font-bold ${moneyColor}">$${data.finalAmount}</p>
             </div>
         </div>
 

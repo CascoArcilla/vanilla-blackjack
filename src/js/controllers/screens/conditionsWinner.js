@@ -27,39 +27,45 @@ export function drawDelaerFlow(game) {
         renderDealerBlackjack(game);
         renderChangeStatus(game, PHASE_STATUS.BET);
         checkEndGame(game);
+        return
+    }
 
-        // Dealer tiene que seguir tomando cartas
-    } else if (game.getDealer().isGrow()) {
-        game.hitDealer();
-        dealCardDealer(game);
-
-        // Dealer pierde
-    } else if (game.getDealer().isLose()) {
+    // Dealer pierde
+    if (game.getDealer().isLose()) {
         renderDealerBust(game);
         renderChangeStatus(game, PHASE_STATUS.BET);
         checkEndGame(game);
-
-        // Comprobar condiciones del ganador
-    } else {
-        const winner = game.checkWinner();
-        console.log("AAAAAAAAAAAAAAAAAAAA", winner);
-        switch (winner) {
-            case "player":
-                renderPlayerWin(game);
-                renderChangeStatus(game, PHASE_STATUS.BET);
-                checkEndGame(game);
-                break;
-            case "dealer":
-                renderDealerWin(game);
-                renderChangeStatus(game, PHASE_STATUS.BET);
-                checkEndGame(game);
-                break;
-            case "draw":
-                renderDraw(game);
-                renderChangeStatus(game, PHASE_STATUS.BET);
-                break;
-        }
+        return
     }
+
+    // Dealer tiene que seguir tomando cartas
+    if (game.getDealer().isGrow()) {
+        game.hitDealer();
+        dealCardDealer(game);
+        return
+    }
+
+    // Comprobar condiciones del ganador
+    const winner = game.checkWinner();
+    switch (winner) {
+        case "player":
+            renderPlayerWin(game);
+            renderChangeStatus(game, PHASE_STATUS.BET);
+            checkEndGame(game);
+            break;
+        case "dealer":
+            renderDealerWin(game);
+            renderChangeStatus(game, PHASE_STATUS.BET);
+            checkEndGame(game);
+            break;
+        case "draw":
+            renderDraw(game);
+            renderChangeStatus(game, PHASE_STATUS.BET);
+            break;
+        default:
+            break;
+    }
+    return
 }
 
 
