@@ -3,7 +3,6 @@ import { disableBet, enableBet } from "../ui/disableButtons.js";
 import { renderScorePlayer, renderMoneyPlayer, renderBetPlayer, renderScoreDealer } from "../ui/rendersCounts.js";
 import { dealCards, dealCardPlayer } from "../ui/showCards.js";
 import { PHASE_STATUS } from "../../consts/Values.js";
-import { toggleMenu } from "../ui/toggleMenu.js";
 import { drawDelaerFlow } from "./conditionsWinner.js";
 
 export function hit(game) {
@@ -16,7 +15,7 @@ export function hit(game) {
     const player = game.getPlayer();
 
     if (player.getBet() <= 0) {
-        toggleMenu();
+        game.getBetMenu().close();
         renderMessage("Debes apostar antes de empezar la ronda");
         game.setStatus(PHASE_STATUS.BET);
         enableBet();
@@ -56,6 +55,7 @@ export function stand(game) {
         return false;
     }
 
+    game.getBetMenu().close();
     game.setStatus(PHASE_STATUS.DEAL);
 
     const cardToReveal = game.getDealer().getCards()[1];

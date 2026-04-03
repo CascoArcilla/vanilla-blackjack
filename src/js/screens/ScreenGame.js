@@ -6,7 +6,6 @@ import { updateCounts } from "../controllers/ui/rendersCounts.js";
 import { finishGame, newGame } from "../controllers/screens/finishGame.js";
 import { bet } from "../controllers/screens/bets.js";
 import { hit, stand } from "../controllers/screens/optionsPlayer.js";
-import { toggleMenu } from "../controllers/ui/toggleMenu.js";
 
 let game;
 
@@ -30,7 +29,7 @@ function ScreenGame() {
 }
 
 document.addEventListener("click", (e) => {
-    if (e.target.closest(".btn-show-hide-menu")) { toggleMenu(); }
+    if (e.target.closest(".btn-show-hide-menu")) { game.toggleMenu(); }
     if (e.target.closest(".btn-finish-game")) { finishGame(); }
     if (e.target.closest(".btn-new-game")) { newGame(); }
     if (e.target.closest(".btn-hit")) { hit(game); }
