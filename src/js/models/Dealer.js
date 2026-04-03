@@ -1,6 +1,6 @@
-import Deck from "./Deck";
-import { getCardValue } from "../consts/ValuesCard";
-import { WIN_SCORE } from "../consts/Values";
+import Deck from "./Deck.js";
+import { getCardValue } from "../consts/ValuesCard.js";
+import { WIN_SCORE } from "../consts/Values.js";
 
 export default class Dealer {
   #score;
@@ -40,7 +40,7 @@ export default class Dealer {
 
   isBlackjack() { return this.getScore(false) === WIN_SCORE; }
 
-  isLose() { return this.getScore() > WIN_SCORE; }
+  isLose() { return this.getScore(false) > WIN_SCORE; }
 
   getScore(hideSecondCard = true) {
     let score = 0;

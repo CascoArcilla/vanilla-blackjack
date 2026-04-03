@@ -1,17 +1,20 @@
-import { renderMessage } from "./message";
-import { updateCounts } from "../ui/rendersCounts";
-import { PHASE_STATUS } from "../../consts/Values";
-import { enableBet } from "../ui/disableButtons";
-import { emptyCards, dealCardDealer } from "../ui/showCards";
+import { renderMessage } from "./message.js";
+import { updateCounts } from "../ui/rendersCounts.js";
+import { PHASE_STATUS } from "../../consts/Values.js";
+import { enableBet } from "../ui/disableButtons.js";
+import { emptyCards, dealCardDealer } from "../ui/showCards.js";
+import { checkEndGame } from "./endGame.js";
 
 export function checkPlayerConditions(game) {
     if (game.getPlayer().isBlackjack()) {
         renderPlayerBlackjack(game);
         renderChangeStatus(game, PHASE_STATUS.BET);
+        checkEndGame(game);
 
     } else if (game.getPlayer().isLose()) {
         renderPlayerBust(game);
         renderChangeStatus(game, PHASE_STATUS.BET);
+        checkEndGame(game);
 
     } else {
         game.setStatus(PHASE_STATUS.WAITING_PLAYER_ACTION);
@@ -23,35 +26,46 @@ export function drawDelaerFlow(game) {
     if (game.getDealer().isBlackjack()) {
         renderDealerBlackjack(game);
         renderChangeStatus(game, PHASE_STATUS.BET);
+        checkEndGame(game);
+        return
+    }
 
-        // Dealer tiene que seguir tomando cartas
-    } else if (game.getDealer().isGrow()) {
-        game.hitDealer();
-        dealCardDealer(game);
-
-        // Dealer pierde
-    } else if (game.getDealer().isLose()) {
+    // Dealer pierde
+    if (game.getDealer().isLose()) {
         renderDealerBust(game);
         renderChangeStatus(game, PHASE_STATUS.BET);
-
-        // Comprobar condiciones del ganador
-    } else {
-        const winner = game.checkWinner();
-        switch (winner) {
-            case "player":
-                renderPlayerWin(game);
-                renderChangeStatus(game, PHASE_STATUS.BET);
-                break;
-            case "dealer":
-                renderDealerWin(game);
-                renderChangeStatus(game, PHASE_STATUS.BET);
-                break;
-            case "draw":
-                renderDraw(game);
-                renderChangeStatus(game, PHASE_STATUS.BET);
-                break;
-        }
+        checkEndGame(game);
+        return
     }
+
+    // Dealer tiene que seguir tomando cartas
+    if (game.getDealer().isGrow()) {
+        game.hitDealer();
+        dealCardDealer(game);
+        return
+    }
+
+    // Comprobar condiciones del ganador
+    const winner = game.checkWinner();
+    switch (winner) {
+        case "player":
+            renderPlayerWin(game);
+            renderChangeStatus(game, PHASE_STATUS.BET);
+            checkEndGame(game);
+            break;
+        case "dealer":
+            renderDealerWin(game);
+            renderChangeStatus(game, PHASE_STATUS.BET);
+            checkEndGame(game);
+            break;
+        case "draw":
+            renderDraw(game);
+            renderChangeStatus(game, PHASE_STATUS.BET);
+            break;
+        default:
+            break;
+    }
+    return
 }
 
 
@@ -98,6 +112,5 @@ export function renderDealerWin(game) {
 
 export function renderPlayerWin(game) {
     renderMessage("¡Tienes más puntos que el crupier!, ganas la ronda.");
-    game.getPlayer().win();
     game.resetRound();
 }

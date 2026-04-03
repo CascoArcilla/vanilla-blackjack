@@ -1,6 +1,6 @@
-import { BOARD_STYLES_P } from "../consts/Styles";
-import { BOARD_STYLES_SECTION } from "../consts/Styles";
-import removeAllChilds from "../utils/removeAllChilds";
+import { BOARD_STYLES_P } from "../consts/Styles.js";
+import { BOARD_STYLES_SECTION } from "../consts/Styles.js";
+import removeAllChilds from "../utils/removeAllChilds.js";
 
 export default class Board {
   constructor() {

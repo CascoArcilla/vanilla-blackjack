@@ -1,6 +1,6 @@
-import Player from "./Player";
-import Dealer from "./Dealer";
-import { PHASE_STATUS, WIN_SCORE } from "../consts/Values";
+import Player from "./Player.js";
+import Dealer from "./Dealer.js";
+import { PHASE_STATUS, WIN_SCORE } from "../consts/Values.js";
 
 export default class Game {
     #player;
@@ -44,17 +44,23 @@ export default class Game {
 
     checkWinner() {
         const scorePlayer = this.#player.getScore();
-        const scoreDealer = this.#dealer.getScore();
+        const scoreDealer = this.#dealer.getScore(false);
 
-        if (scorePlayer > scoreDealer && scorePlayer <= WIN_SCORE) {
-            this.#player.win();
-            return "player";
-        } else if (scorePlayer < scoreDealer && scoreDealer <= WIN_SCORE) {
-            return "dealer";
-        } else if (scorePlayer === scoreDealer) {
+        if (scorePlayer === scoreDealer) {
             this.#player.push();
             return "draw";
         }
+
+        if (scorePlayer <= WIN_SCORE && scorePlayer > scoreDealer) {
+            this.#player.win();
+            return "player";
+        }
+
+        if (scoreDealer <= WIN_SCORE && scoreDealer > scorePlayer) {
+            return "dealer";
+        }
+
+        return null;
     }
 
     makeBet() {

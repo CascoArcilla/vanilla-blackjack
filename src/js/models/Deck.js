@@ -1,6 +1,6 @@
-import Card from "./Card";
-import { Suit } from "../consts/Suit";
-import { ValuesCard } from "../consts/ValuesCard";
+import Card from "./Card.js";
+import { Suit } from "../consts/Suit.js";
+import { ValuesCard } from "../consts/ValuesCard.js";
 
 const SUITS_DECK = 4;
 

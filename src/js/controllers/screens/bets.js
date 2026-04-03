@@ -1,7 +1,7 @@
-import { renderBetPlayer } from "../ui/rendersCounts";
-import { renderMessage } from "./message";
-import { toggleMenu } from "../ui/toggleMenu";
-import { PHASE_STATUS } from "../../consts/Values";
+import { renderBetPlayer } from "../ui/rendersCounts.js";
+import { renderMessage } from "./message.js";
+import { toggleMenu } from "../ui/toggleMenu.js";
+import { PHASE_STATUS } from "../../consts/Values.js";
 
 export function bet(bet, game) {
     if (game.getStatus() !== PHASE_STATUS.BET) {

@@ -1,5 +1,5 @@
-import { getCardValue } from "../consts/ValuesCard";
-import { WIN_SCORE } from "../consts/Values";
+import { getCardValue } from "../consts/ValuesCard.js";
+import { WIN_SCORE } from "../consts/Values.js";
 
 export default class Player {
     #money;
