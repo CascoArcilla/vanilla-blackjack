@@ -1,5 +1,4 @@
 import gsap from "gsap";
-import { toggleMenu } from "../ui/toggleMenu.js";
 import { checkPlayerConditions, drawDelaerFlow } from "../screens/conditionsWinner.js";
 import { renderScoreDealer, updateCounts } from "./rendersCounts.js";
 import Game from "../../models/Game.js";
@@ -84,7 +83,7 @@ export function dealCards(game) {
     // Desactivar transiciones CSS y asegurar que estén por encima de todo
     gsap.set([cp1, cd1, cp2, cd2], { transition: "none", zIndex: 50 });
 
-    toggleMenu();
+    game.getBetMenu().close();
 
     timeLine
         .from(cp1, { x: offsetCP1.x, y: offsetCP1.y })
@@ -108,7 +107,7 @@ export function dealCardPlayer(game) {
     gsap.set(wrapPlayer, { overflow: "visible" });
     gsap.set(cardRender, { transition: "none", zIndex: 50 });
 
-    toggleMenu();
+    game.getBetMenu().close();
 
     gsap.from(cardRender, {
         x: offset.x,
@@ -141,7 +140,7 @@ export function dealCardDealer(game) {
     gsap.set(wrapDealer, { overflow: "visible" });
     gsap.set(cardRender, { transition: "none", zIndex: 50 });
 
-    toggleMenu();
+    game.getBetMenu().close();
 
     gsap.from(cardRender, {
         x: offset.x,

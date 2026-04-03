@@ -1,16 +1,19 @@
 import Player from "./Player.js";
 import Dealer from "./Dealer.js";
+import BetMenu from "./BetMenu.js";
 import { PHASE_STATUS, WIN_SCORE } from "../consts/Values.js";
 
 export default class Game {
     #player;
     #dealer;
+    #betMenu;
     #winAmount;
     #status;
 
     constructor(winAmount = 500, startAmount = 100, playerName = "Jugador") {
         this.#player = new Player(startAmount, playerName);
         this.#dealer = new Dealer();
+        this.#betMenu = new BetMenu();
         this.#winAmount = winAmount;
         this.#status = PHASE_STATUS.BET;
 
@@ -68,6 +71,8 @@ export default class Game {
         this.#player.betOrLose(bet);
     }
 
+    toggleMenu() { this.#betMenu.toggle(this.#status); }
+
     getPlayer() { return this.#player; }
 
     getDealer() { return this.#dealer; }
@@ -75,6 +80,8 @@ export default class Game {
     getWinAmount() { return this.#winAmount; }
 
     getStatus() { return this.#status; }
+
+    getBetMenu() { return this.#betMenu; }
 
     setStatus(status) { this.#status = status; }
 }

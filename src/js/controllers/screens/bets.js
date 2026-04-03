@@ -1,6 +1,5 @@
 import { renderBetPlayer } from "../ui/rendersCounts.js";
 import { renderMessage } from "./message.js";
-import { toggleMenu } from "../ui/toggleMenu.js";
 import { PHASE_STATUS } from "../../consts/Values.js";
 
 export function bet(bet, game) {
@@ -21,13 +20,13 @@ export function bet(bet, game) {
     const currentBet = player.getBet();
 
     if (currentMoney <= 0) {
-        toggleMenu();
+        game.getBetMenu().close();
         renderMessage("No tienes saldo para apostar");
         return false;
     }
 
     if (currentBet + bet > currentMoney) {
-        toggleMenu();
+        game.getBetMenu().close();
         renderMessage("No tienes saldo suficiente para apostar");
         return false;
     }
